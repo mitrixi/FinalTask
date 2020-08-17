@@ -1,9 +1,19 @@
 plugins {
     id 'java'
+    id "io.qameta.allure" version "2.8.1"
+}
+
+allure {
+    version = '2.8.1'
+    autoconfigure = true
+    aspectjweaver = true
+//    allureJavaVersion = LATEST_VERSION
 }
 
 group 'org.example'
 version '1.0-SNAPSHOT'
+
+compileJava.options.encoding = 'UTF-8'
 
 repositories {
     mavenCentral()
@@ -12,11 +22,15 @@ repositories {
 test {
     useTestNG()
     ignoreFailures = true
+    testLogging.showStandardStreams = true
+    systemProperty 'allure.results.directory', 'build/allure-results'
 }
+
 
 dependencies {
     compile group: 'com.codeborne', name: 'selenide', version: '5.13.1'
-    compile group: 'io.qameta.allure', name: 'allure-testng', version: '2.13.5'
+    compile group: 'io.qameta.allure', name: 'allure-testng', version: '2.8.1'
+    compile group: 'io.qameta.allure', name: 'allure-gradle', version: '2.8.1'
     testCompile group: 'org.testng', name: 'testng', version: '7.3.0'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
     compile group: 'com.google.guava', name: 'guava', version: '29.0-jre'

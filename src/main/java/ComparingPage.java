@@ -1,25 +1,40 @@
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
 
-import java.util.List;
-
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 
 public class ComparingPage {
-    public void selectAllCharacteristics() {
+    @Step
+    public ComparingPage selectAllCharacteristics() {
         $x("//div[@class='_2bm8juabMn']/button[2]").click();
+        return this;
     }
 
-    public void selectDifferentCharacteristics() {
+    @Step
+    public ComparingPage selectDifferentCharacteristics() {
         $x("//div[@class='_2bm8juabMn']/button[1]").click();
+        return this;
     }
 
-    public List<SelenideElement> isThereTwoPhonesInList() {
-        return $$("._1qSSlc4Oxp");
+    @Step
+    public ComparingPage isThereTwoPhonesInList() {
+        $$("._1qSSlc4Oxp").shouldHaveSize(2);
+        return this;
     }
 
-    public boolean OSIsDisplayed() {
-        return $x("//div[text()='Операционная система']").isDisplayed();
+    @Step
+    public ComparingPage OSIsDisplayed() {
+
+        $x("//div[text()='Операционная система']").shouldBe(Condition.visible);
+        return this;
+//        return $$("_1P4gDT01yj div").findBy(text("Операционная система")).is(Condition.visible);
+    }
+
+    @Step
+    public ComparingPage OSIsNotDisplayed() {
+
+        $x("//div[text()='Операционная система']").shouldBe(Condition.hidden);
+        return this;
 //        return $$("_1P4gDT01yj div").findBy(text("Операционная система")).is(Condition.visible);
     }
 }
