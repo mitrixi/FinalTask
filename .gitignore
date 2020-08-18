@@ -7,5 +7,5 @@ gradlew
 gradlew.bat
 settings.gradle
 .allure/
-
+ajcore.*
 

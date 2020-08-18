@@ -1,39 +1,38 @@
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class MobilePhonesCatalog {
     @Step
-    public MobilePhonesCatalog selectComparedPhones() {
-        $("[for='7893318_7701962']").click();
-        $("[for='7893318_16713696']").click();
-        return this;
+    public void selectComparedPhones() {
+        $x("//span[text()='Xiaomi']").click();
+        $x("//span[text()='realme']").click();
     }
+
     @Step
-    public MobilePhonesCatalog sortPhonesByPrice() {
-        $("._2zH77vazcW._3tIaiy1WMf").click();
-        return this;
+    public void sortPhonesByPrice() {
+        $x("//button[text()='по цене']").click();
     }
+
     @Step
-    public MobilePhonesCatalog selectComparing(String brand) {
-//        $x("//div[@class='_2Qo3ODl0by cia-vs']//article//div[text()='" + brand + "']//..//preceding-sibling::a//preceding-sibling::div//div[@class='_2IwbFpEZn7 _3YfPcv73Wj _1rDffWmsUY']").hover().click();
+    public void selectComparing(String brand) {
         $x("//div[..//a[contains(@href, '" + brand + "')]]/div[contains(@aria-label, 'сравнению')]").hover().click();
-        return this;
     }
+
     @Step
-    public ComparingPage pushButtonComparing() {
-        SelenideElement elem =  $("._3rzhojG-YQ._3t3LXmsKsK._3z2S53fBdS._1rROdYTYlo._1t_-Z3RX29");
-        if (elem.isDisplayed())
-            elem.click();
-        $("._24DZ8VtEeO._3Vm6nmYXxJ").scrollIntoView(true).click();
-        return page(ComparingPage.class);
+    public void pushButtonComparing() {
+        // в firefox не срабатывает кнопка "сравнение",
+        // если она закрата уведомлением или находится вне области видимости страницы
+//        SelenideElement elem =  $("._3rzhojG-YQ._3t3LXmsKsK._3z2S53fBdS._1rROdYTYlo._1t_-Z3RX29");
+//        if (elem.isDisplayed())
+//            elem.click();
+        $$x("//span[text()='Сравнение']").first().scrollIntoView(true).click();
     }
+
     @Step
-    public MobilePhonesCatalog isPhoneAddedToComparing() {
-        $("._1_ABPFjOJQ").shouldBe(Condition.visible);
-        return this;
+    public void isPhoneAddedToComparing() {
+        $x("//div[contains(text(), 'добавлен к сравнению')]").shouldBe(Condition.visible);
     }
 
 }
