@@ -36,10 +36,14 @@ test {
     ignoreFailures = true
     testLogging.showStandardStreams = true
     systemProperty 'allure.results.directory', 'build/allure-results'
+    if (project.hasProperty("fb")) {
+        systemProperty 'fb', project.getProperty('fb')
+    }
+    if (project.hasProperty("sb")) {
+        systemProperty 'sb', project.getProperty('sb')
+    }
 //    jvmArgs '-XX:MaxPermSize=512m', '-XX:-UseSplitVerifier'
 }
-
-
 
 
 dependencies {

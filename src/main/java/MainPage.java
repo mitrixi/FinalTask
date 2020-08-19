@@ -1,6 +1,6 @@
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 
 public class MainPage {
     @Step
@@ -10,9 +10,9 @@ public class MainPage {
 
     @Step
     public void openMobilePhonesCatalog() {
-        $x("//span[text()='Каталог товаров']").click();
-        $x("//img[@alt='Электроника']").hover();
-        $x("//a[text()='Мобильные телефоны']").click();
+        LocatorsUtil.productCatalog.click();
+        LocatorsUtil.electronics.hover();
+        LocatorsUtil.mobilePhones.click();
     }
 
 }

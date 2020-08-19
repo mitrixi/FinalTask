@@ -1,39 +1,34 @@
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Selenide.*;
-
 public class MobilePhonesCatalog {
+
     @Step
-    public void selectComparedPhones() {
-        $x("//span[text()='Xiaomi']").click();
-        $x("//span[text()='realme']").click();
+    public void selectComparedPhone(String brand) {
+        LocatorsUtil.selectBrandPhone(brand).click();
     }
 
     @Step
     public void sortPhonesByPrice() {
-        $x("//button[text()='по цене']").click();
+        LocatorsUtil.sortPhonesByPrice.click();
     }
 
     @Step
     public void selectComparing(String brand) {
-        $x("//div[..//a[contains(@href, '" + brand + "')]]/div[contains(@aria-label, 'сравнению')]").scrollIntoView(false).hover().click();
+        LocatorsUtil.selectComparing(brand).scrollIntoView(false).hover().click();
     }
 
     @Step
     public void pushButtonComparing() {
         // в firefox не срабатывает кнопка "сравнение",
-        // если она закрата уведомлением или находится вне области видимости страницы
-        SelenideElement elem =  $("._3rzhojG-YQ._3t3LXmsKsK._3z2S53fBdS._1rROdYTYlo._1t_-Z3RX29");
-        if (elem.isDisplayed())
-            elem.click();
-        $$x("//span[text()='Сравнение']").first().scrollIntoView(true).click();
+        // если она закрыта уведомлением или находится вне области видимости страницы
+        if (LocatorsUtil.closePopup.isDisplayed())
+            LocatorsUtil.closePopup.click();
+        LocatorsUtil.pushButtonComparing.scrollIntoView(true).click();
     }
 
     @Step
     public void isPhoneAddedToComparing() {
-        $x("//div[contains(text(), 'добавлен к сравнению')]").shouldBe(Condition.visible);
+        LocatorsUtil.isPhoneAddedToComparing.shouldBe(Condition.visible);
     }
-
 }

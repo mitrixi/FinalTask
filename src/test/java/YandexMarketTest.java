@@ -8,6 +8,8 @@ public class YandexMarketTest {
     MainPage mainPage;
     MobilePhonesCatalog mobilePhonesCatalog;
     ComparingPage comparingPage;
+    String firstBrand = System.getProperty("fb") != null ? System.getProperty("fb") : "Xiaomi";
+    String secondBrand = System.getProperty("sb") != null ? System.getProperty("sb") : "realme";
 
     @BeforeClass
     public void configureTest() {
@@ -23,36 +25,18 @@ public class YandexMarketTest {
         comparingPage = new ComparingPage();
     }
 
-//    @Description("Check functionality YandexMarket site")
-//    @Test(testName = "YandexMarketText")
-//    public void yandexMarketTest() {
-//        new MainPage.enterToMainPage()
-//                .openMobilePhonesCatalog()
-//                .selectComparedPhones()
-//                .sortPhonesByPrice()
-//                .selectComparing("xiaomi")
-//                .isPhoneAddedToComparing()
-//                .selectComparing("realme")
-//                .isPhoneAddedToComparing()
-//                .pushButtonComparing()
-//                .isThereTwoPhonesInList()
-//                .selectAllCharacteristics()
-//                .OSIsDisplayed()
-//                .selectDifferentCharacteristics()
-//                .OSIsNotDisplayed();
-//    }
-
     @Description("Check functionality YandexMarket site")
     @Test(testName = "YandexMarketText")
     public void yandexMarketTest() {
         mainPage.enterToMainPage();
         mainPage.openMobilePhonesCatalog();
 
-        mobilePhonesCatalog.selectComparedPhones();
+        mobilePhonesCatalog.selectComparedPhone(firstBrand);
+        mobilePhonesCatalog.selectComparedPhone(secondBrand);
         mobilePhonesCatalog.sortPhonesByPrice();
-        mobilePhonesCatalog.selectComparing("xiaomi");
+        mobilePhonesCatalog.selectComparing(firstBrand);
         mobilePhonesCatalog.isPhoneAddedToComparing();
-        mobilePhonesCatalog.selectComparing("realme");
+        mobilePhonesCatalog.selectComparing(secondBrand);
         mobilePhonesCatalog.isPhoneAddedToComparing();
         mobilePhonesCatalog.pushButtonComparing();
 
