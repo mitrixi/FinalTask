@@ -30,6 +30,8 @@ public class YandexMarketTest {
     public void yandexMarketTest() {
         mainPage.enterToMainPage();
         mainPage.openMobilePhonesCatalog();
+        mainPage.selectElectronics();
+        mainPage.selectMobilePhones();
 
         mobilePhonesCatalog.selectComparedPhone(firstBrand);
         mobilePhonesCatalog.selectComparedPhone(secondBrand);

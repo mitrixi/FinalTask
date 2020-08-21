@@ -11,7 +11,15 @@ public class MainPage {
     @Step
     public void openMobilePhonesCatalog() {
         LocatorsUtil.productCatalog.click();
+    }
+
+    @Step
+    public void selectElectronics() {
         LocatorsUtil.electronics.hover();
+    }
+
+    @Step
+    public void selectMobilePhones() {
         LocatorsUtil.mobilePhones.click();
     }
 
