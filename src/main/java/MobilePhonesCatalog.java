@@ -21,7 +21,8 @@ public class MobilePhonesCatalog {
     @Step
     public void pushButtonComparing() {
         // в firefox не срабатывает кнопка "сравнение",
-        // если она закрыта уведомлением или находится вне области видимости страницы
+        // если она закрыта уведомлением
+        // или находится вне области видимости страницы
         if (LocatorsUtil.closePopup.isDisplayed())
             LocatorsUtil.closePopup.click();
         LocatorsUtil.pushButtonComparing.scrollIntoView(true).click();
