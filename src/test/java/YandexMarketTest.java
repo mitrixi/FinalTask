@@ -1,5 +1,6 @@
 import com.codeborne.selenide.Configuration;
 import io.qameta.allure.Description;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,9 +14,14 @@ public class YandexMarketTest {
 
     @BeforeClass
     public void configureTest() {
+        Configuration.remote = "http://10.254.0.131:4444/wd/hub/";
         Configuration.browser = "firefox";
         Configuration.startMaximized = true;
         Configuration.timeout = 20000;
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", true);
+        Configuration.browserCapabilities = capabilities;
     }
 
     @BeforeMethod
